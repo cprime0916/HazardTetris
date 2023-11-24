@@ -1,6 +1,7 @@
-from tetromino import *
+import random
 import pygame
-
+from tetromino import *
+from const import *
 class Tetris:
     def __init__(self, width, height):
         self.width = width
@@ -11,6 +12,12 @@ class Tetris:
         self.score = 0  # Add score attribute
         self.snow_list = []
         self.volcanic_list = []
+        self.to_be_color = []
+        # self.rotate_sound = pygame.mixer.Sound("Sounds/rotate.ogg")
+        # self.clear_sound = pygame.mixer.Sound("Sounds/clear.ogg")
+
+        # pygame.mixer.music.load("Sounds/music.ogg")
+        # pygame.mixer.music.play(-1)
 
     def new_piece(self):
         # Choose a random shape
@@ -77,7 +84,7 @@ class Tetris:
                  "..O..",
                  ".....",
                  "....."]]
-        x = random.randint(0, self.width)
+        x = random.randint(0, self.width-1)
         y = 0
         return colour_tetromino(x, y, shape, RED)
 
@@ -86,7 +93,7 @@ class Tetris:
         for i, row in enumerate(piece.shape[(piece.rotation + rotation) % len(piece.shape)]):
             for j, cell in enumerate(row):
                 try:
-                    if cell == 'O' and (self.grid[piece.y + i + y][piece.x + j + x] != 0):
+                    if cell == 'O' and ((self.grid[piece.y + i + y][piece.x + j + x] != 0) or piece.y + i + y < 0 or piece.x + j + x < 0):
                         return False
                 except IndexError:
                     return False
@@ -100,12 +107,16 @@ class Tetris:
                 lines_cleared += 1
                 del self.grid[i]
                 self.grid.insert(0, [0 for _ in range(self.width)])
+        # if lines_cleared:
+        #     # self.clear_sound.play()
         return lines_cleared
+
     def random_disappear(self):
-        for i in range(HEIGHT//25-3, HEIGHT//25):
-            for _ in range(5):
-                random_ver = random.randint(0, WIDTH // 25)
-                self.grid[i][random_ver-1] = 0
+        dis = random.randint(0, self.width-1)
+        for i in range(self.height):
+            self.to_be_color.append(((dis*GRID_SIZE, i*GRID_SIZE, GRID_SIZE-1, GRID_SIZE-1), BROWN))
+            self.grid[i][dis] =  0
+
     def lock_piece(self, piece):
         """Lock the piece in place and create a new piece"""
         for i, row in enumerate(piece.shape[piece.rotation % len(piece.shape)]):
@@ -135,6 +146,9 @@ class Tetris:
                 except:
                     pass
 
+        lines_cleared = self.clear_lines()
+        self.score += lines_cleared * 100  # Update the score based on the number of cleared lines
+
 
     def update(self):
         global WIND, SNOWING, TYPHOON, EARTHQUAKE, VOLCANIC
@@ -149,18 +163,14 @@ class Tetris:
             if WIND[2] >= 10:
                 WIND[2] = 0
                 WIND[0] = False
-            if WIND[0]:
-                if WIND[1] == "Left":
-                    randnum = random.randint(0, 1)
-                    if randnum == 0:
-                        if self.current_piece.x >= 1:
-                            self.current_piece.x -= 1
-                else:
-                    randnum = random.randint(0, 1)
-                    if randnum == 0:
-                        if self.valid_move(self.current_piece, 1, 0, 0):
-                            self.current_piece.x += 1
-                WIND[2] += 1
+            # if WIND[0] and random.randint(0, 1) == 0:
+            #     if WIND[1] == "Left":
+            #         if self.valid_move(self.current_piece, -1, 0, 0):
+            #             self.current_piece.x -= 1
+            #     else:
+            #         if self.valid_move(self.current_piece, 1, 0, 0):
+            #             self.current_piece.x += 1
+            #     WIND[2] += 1
 
 
             '''Snow Function'''
@@ -178,25 +188,17 @@ class Tetris:
                         snow.y += 1
                     else:
                         self.lock_snow_piece(snow)
-
+                        self.snow_list.remove(snow)
 
             '''Typhoon Function'''
             if TYPHOON[1] >= 10:
                 TYPHOON[1] = 0
                 TYPHOON[0] = False
-            if TYPHOON[0]:
-                randnum = random.randint(0, 1)
-                if randnum == 0:
-                    randnum = random.randint(0, 1)
-                    if randnum == 0:
-                        if self.current_piece.x >= 1:
-                            self.current_piece.x -= 1
-                else:
-                    randnum = random.randint(0, 1)
-                    if randnum == 0:
-                        if self.valid_move(self.current_piece, 1, 0, 0):
-                            self.current_piece.x += 1
-                TYPHOON[1] += 1
+            # if TYPHOON[0]:
+            #     randnum = random.randint(0, 2)
+            #     if self.valid_move(self.current_piece, randnum-1, 0, 0):
+            #         self.current_piece.x += randnum-1
+            #     TYPHOON[1] += 1
 
 
             '''Earthquake Function'''
@@ -216,11 +218,10 @@ class Tetris:
 
             for lava in self.volcanic_list:
                 if not self.game_over:
-                    if self.valid_move(lava, 0, 1, 0):
+                    if lava.y+1 < self.height:
                         lava.y += 1
-                        self.grid[lava.y-1][lava.x-1] = 0
+                        self.grid[lava.y][lava.x] = 0
                     else:
-                        self.grid[lava.y-1][lava.x-1] = 0
                         self.volcanic_list.remove(lava)
 
     def draw(self, screen):
@@ -229,6 +230,11 @@ class Tetris:
             for x, cell in enumerate(row):
                 if cell:
                     pygame.draw.rect(screen, cell, (x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE - 1, GRID_SIZE - 1))
+
+        """Color eqrthquake"""
+        for pos, color in self.to_be_color:
+            pygame.draw.rect(screen, color, pos)
+        self.to_be_color = []
 
         if self.current_piece:
             for i, row in enumerate(self.current_piece.shape[self.current_piece.rotation % len(self.current_piece.shape)]):

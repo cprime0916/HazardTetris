@@ -8,6 +8,7 @@ class Tetromino:
         self.shape = shape
         self.color = random.choice(COLORS) # You can choose different colors for each shape
         self.rotation = 0
+
 class colour_tetromino:
     def __init__(self, x, y, shape, colour):
         self.x = x

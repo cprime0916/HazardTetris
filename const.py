@@ -1,8 +1,13 @@
+WIDTH, HEIGHT = 250, 500
+GRID_SIZE = 25
+
+# Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 GREEN = (0, 255, 0)
+BROWN = (107, 0, 7)
 COLORS = [RED, BLUE, GREEN]
 GRAVITY = 10
 DIFFICULTY = "Asia"
@@ -11,9 +16,15 @@ WATER = False
 TYPHOON = [False, 0]
 SNOWING = [False, 0]
 EARTHQUAKE = False
-VOLCANIC = [True, 0]
-WIDTH, HEIGHT = 250, 500
-GRID_SIZE = 25
+VOLCANIC = [False, 0]
+
+# Read new score
+# with open("new_score.txt") as f:
+#     highest_score = int(f.readline())
+#     f.close()
+
+# Tetromino shapes
+
 SHAPES = [
     [
         ['.....',
