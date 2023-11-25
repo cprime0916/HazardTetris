@@ -4,7 +4,9 @@ import random
 from const import *
 from tetromino import *
 from tetris import *
-
+with open("new_score.txt") as f:
+    highest_score = int(f.readline())
+    f.close()
 pygame.init()
 
 
@@ -140,6 +142,7 @@ def main():
             draw_game_over(screen, WIDTH // 2 - 100, HEIGHT // 2 - 30)  # Draw the "Game Over" message
             if game.score > highest_score:
                 with open("new_score.txt", "w") as f:
+
                     f.write(str(game.score))
             # You can add a "Press any key to restart" message here
             if event.type == pygame.KEYDOWN:
