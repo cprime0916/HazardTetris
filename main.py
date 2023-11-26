@@ -29,7 +29,7 @@ def hazards(screen, x, y):
     global WIND, SNOWING, TYPHOON, EARTHQUAKE
 
     if not (WIND[0] or SNOWING[0] or TYPHOON[0] or EARTHQUAKE):
-        randnum = random.randint(1, 100)
+        randnum = random.randint(1, 7)
         if randnum == 1:
             WIND[0] = True
             WIND[1] = random.choice(["Left", "Right"])
