@@ -1,4 +1,4 @@
 reset_game
-difficulty menu
+self.diff menu
 score system (diff * row)
 timer (1min)

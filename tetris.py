@@ -19,29 +19,30 @@ class Tetris:
         # pygame.mixer.music.load("Sounds/music.ogg")
         # pygame.mixer.music.play(-1)
 
+
     def new_piece(self):
         # Choose a random shape
         randnum = random.randint(1, 100)
-        if DIFFICULTY == "Noob":
+        if diff == "Noob":
             if randnum <= 50:
                 shape = SHAPES[0]
             else:
                 shape = SHAPES[1]
-        elif DIFFICULTY == "Easy":
+        elif diff == "Easy":
             if randnum <= 25:
                 shape = SHAPES[0]
             elif randnum <= 50:
                 shape = SHAPES[1]
             else:
                 shape = shape = random.choice(SHAPES[2:])
-        elif DIFFICULTY == "Hard":
+        elif diff == "Hard":
             if randnum <= 15:
                 shape = SHAPES[0]
             elif randnum <= 30:
                 shape = SHAPES[1]
             else:
                 shape = random.choice(SHAPES[2:])
-        elif DIFFICULTY == "Glitch":
+        elif diff == "Glitch":
             if randnum <= 5:
                 shape = SHAPES[0]
             elif randnum <= 10:
@@ -52,7 +53,7 @@ class Tetris:
                 shape = random.choice([SHAPES[4], SHAPES[5]])
             else:
                 shape = random.choice([[SHAPES[2], SHAPES[3]]])
-        elif DIFFICULTY == "Asian":
+        elif diff == "Asian":
             if randnum <= 1:
                 shape = SHAPES[0]
             elif randnum <= 6:

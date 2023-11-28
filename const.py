@@ -10,14 +10,14 @@ GREEN = (0, 255, 0)
 BROWN = (107, 0, 7)
 COLORS = [RED, BLUE, GREEN]
 GRAVITY = 10
-DIFFICULTY = "Easy"
+# self.diff = "Easy"
 WIND = [False, "Left", 0]
 WATER = False
 TYPHOON = [False, 0]
 SNOWING = [False, 0]
 EARTHQUAKE = False
 VOLCANIC = [False, 0]
-
+diff = "Asian"
 # Read new score
 # with open("new_score.txt") as f:
 #     highest_score = int(f.readline())

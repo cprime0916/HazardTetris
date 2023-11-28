@@ -1,5 +1,1 @@
 200
-reset_game
-difficulty menu
-score system (diff * row)
-timer (1min)

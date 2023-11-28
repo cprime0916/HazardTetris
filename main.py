@@ -5,13 +5,15 @@ import random
 
 # Self-made Package
 from const import *
+import const
 from tetromino import *
 from tetris import *
-
+from data import *  # database lib
 # Time Package
 import time
-from data import *
 
+# set diff
+diff = const.diff
 # Score Read
 with open("new_score.txt") as f:
     highest_score = int(f.readline())
@@ -99,17 +101,17 @@ def main():
 
     # Change of falling speed according to the argument fall_speed
     fall_time = 0
-    if DIFFICULTY == "Noob":
+    if diff == "Noob":
         fall_speed = 50
-    elif DIFFICULTY == "Easy":
+    elif diff == "Easy":
         fall_speed = 40
-    elif DIFFICULTY == "Normal":
+    elif diff == "Normal":
         fall_speed = 30
-    elif DIFFICULTY == "Hard":
+    elif diff == "Hard":
         fall_speed = 20
-    elif DIFFICULTY == "GLITCH":
+    elif diff == "GLITCH":
         fall_speed = 10
-    elif DIFFICULTY == "Asian":
+    elif diff == "Asian":
         fall_speed = 3
     else:
         fall_speed = 20  # You can adjust this value to change the falling speed, it's in milliseconds
