@@ -1,34 +1,45 @@
+# Python STL
 import sys
 import pygame
 import random
+
+# Self-made Package
 from const import *
 from tetromino import *
-import time
-from data import *
 from tetris import *
 
-# Initialize
+# Time Package
+import time
+from data import *
+
+# Score Read
 with open("new_score.txt") as f:
     highest_score = int(f.readline())
     f.close()
+
+# Screen Start
 pygame.init()
-db = Data()
+
+# SQL Database
+db = Data() # db = Database
 name = "test"
+
+# Time Count (unit=60s)
 endtime = time.time() + 60
 
 
 def draw_score(screen, score, x, y):
     """Draw the score on the screen"""
-    font = pygame.font.Font(None, 36)
-    text = font.render(f"Score: {score}", True, WHITE)
-    screen.blit(text, (x, y))
+    font = pygame.font.Font(None, 36) # FontSize Settings
+    text = font.render(f"Score: {score}", True, WHITE) # Text Content
+    screen.blit(text, (x, y)) # Show Text
 
 
 def draw_game_over(screen, x, y):
     """Draw the game over text on the screen"""
-    font = pygame.font.Font(None, 48)
-    text = font.render("Game Over", True, RED)
-    screen.blit(text, (x, y))
+    font = pygame.font.Font(None, 48) # FontS ize Settings
+    text = font.render("Game Over", True, RED) # Text Content
+    screen.blit(text, (x, y)) # Show Text
 
 
 def hazards(screen, x, y):
@@ -74,11 +85,11 @@ def main():
     if DIFFICULTY == "Noob":
         fall_speed = 50
     elif DIFFICULTY == "Easy":
-        fall_speed = 35
+        fall_speed = 40
     elif DIFFICULTY == "Normal":
-        fall_speed = 20
+        fall_speed = 30
     elif DIFFICULTY == "Hard":
-        fall_speed = 15
+        fall_speed = 20
     elif DIFFICULTY == "GLITCH":
         fall_speed = 10
     elif DIFFICULTY == "Asian":
@@ -158,4 +169,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("WHY YOU END MY LIFE")
