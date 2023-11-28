@@ -42,21 +42,35 @@ def draw_game_over(screen, x, y):
     screen.blit(text, (x, y)) # Show Text
 
 
+# Build Hazard Functions
+'''
+
+Functions:
+
+Wind: 
+Snowing
+Typhoon
+Earthquake
+
+'''
+
+
 def hazards(screen, x, y):
     global WIND, SNOWING, TYPHOON, EARTHQUAKE
 
     if not (WIND[0] or SNOWING[0] or TYPHOON[0] or EARTHQUAKE):
-        randnum = random.randint(1, 7)
-        if randnum == 1:
-            WIND[0] = True
-            WIND[1] = random.choice(["Left", "Right"])
-        elif randnum == 2:
-            SNOWING[0] = True
-        elif randnum == 3:
-            TYPHOON[0] = True
-        elif randnum == 4:
-            EARTHQUAKE = True
+        randnum = random.randint(1, 7) # Choose Hazard Event
+        if randnum == 1:  # 1/7 Chance
+            WIND[0] = True  # Wind Start
+            WIND[1] = random.choice(["Left", "Right"]) # Set direction of wind, 1/2 Chance for both direction
+        elif randnum == 2:  # 1/7 Chance
+            SNOWING[0] = True  # Snow Start
+        elif randnum == 3:  # 1/7 Chance
+            TYPHOON[0] = True  # Typhoon Start
+        elif randnum == 4:  # 1/7 Chance
+            EARTHQUAKE = True  # Earthquake Start
 
+    # Show Current Hazard Event
     font = pygame.font.Font(None, 36)
     text = font.render("Peaceful", True, WHITE)
     if WIND[0]:
@@ -68,19 +82,22 @@ def hazards(screen, x, y):
     elif EARTHQUAKE:
         text = font.render("Earthquake", True, BROWN)
 
+    # Show Text
     screen.blit(text, (x, y))
 
 
 def main():
     # Initialize pygame
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    pygame.display.set_caption('Tetris')
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))  # Show screen
+    pygame.display.set_caption('Tetris')  # Screen Title
 
-    # Create a clock object
+    # Create Game Clock
     clock = pygame.time.Clock()
-    # Create a Tetris object
-    game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
-    keys = pygame.key.get_pressed()
+
+    game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)  # Game initialize
+    keys = pygame.key.get_pressed()  # Detect which key is pressed during every frame
+
+    # Change of falling speed according to the argument fall_speed
     fall_time = 0
     if DIFFICULTY == "Noob":
         fall_speed = 50
@@ -97,19 +114,23 @@ def main():
     else:
         fall_speed = 20  # You can adjust this value to change the falling speed, it's in milliseconds
 
-    while True:
-        # is_snowing = snowing()
-        # if is_snowing:
-        #     game.snow_block()
+    # Settings end
 
-        # Fill the screen with black
+    # Game start
+    while True:
+
+        # Fill background color to black
         screen.fill(BLACK)
+
+        # For every action we get from the game
         for event in pygame.event.get():
+
             # Check for the QUIT event
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            # Check for the KEYDOWN event
+
+            # Check if keys are pressed
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     if game.valid_move(game.current_piece, -1, 0, 0):
@@ -169,7 +190,4 @@ def main():
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("WHY YOU END MY LIFE")
+    main()
