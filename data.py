@@ -10,7 +10,7 @@ class Data:
                     score INT
                 )""")
 
-    def add(self, name, score):
+    def push(self, name, score):
         sql = "INSERT INTO leaderboard (player_name, score) VALUES (?, ?)"
         val = (name, score)
         self.cur.execute(sql, val)

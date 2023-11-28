@@ -144,7 +144,7 @@ def main():
             # Draw the "Game Over" message
             draw_game_over(screen, WIDTH // 2 - 100, HEIGHT // 2 - 30)  # Draw the "Game Over" message
             if game.score > highest_score:
-                Data.add(name=name, score=game.score)
+                Data.push(name=name, score=game.score)
                 with open("new_score.txt", "w") as f:
                     f.write(str(game.score))
             # You can add a "Press any key to restart" message here
