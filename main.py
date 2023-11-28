@@ -14,6 +14,8 @@ import time
 
 # set diff
 diff = const.diff
+# change diff
+diff = "Noob"
 # Score Read
 with open("new_score.txt") as f:
     highest_score = int(f.readline())
@@ -21,6 +23,7 @@ with open("new_score.txt") as f:
 
 # Screen Start
 pygame.init()
+# screen = pygame.display.set_mode((1000, 1000), pygame.FULLSCREEN)
 
 # SQL Database
 db = Data() # db = Database
@@ -131,7 +134,8 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
+            # elif event.type == pygame.VIDEORESIZE:
+            #     pass  # Ignore the resize event
             # Check if keys are pressed
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
