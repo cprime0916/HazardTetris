@@ -1,4 +1,6 @@
 import sqlite3
+
+
 class Data:
     def __init__(self):
         self.conn = sqlite3.connect("data.db")
@@ -15,8 +17,9 @@ class Data:
         val = (name, score)
         self.cur.execute(sql, val)
         self.conn.commit()
+
     def at(self, arg):
-        if(arg.isnum()):
+        if (arg.isnum()):
             sql = "SELECT player_name FROM leaderboard WHERE score = ?"
             val = (arg,)
             self.cur.execute(sql, val)

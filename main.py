@@ -3,8 +3,10 @@ import pygame
 import random
 from const import *
 from tetromino import *
+import time
 from data import *
 from tetris import *
+
 # Initialize
 with open("new_score.txt") as f:
     highest_score = int(f.readline())
@@ -12,6 +14,8 @@ with open("new_score.txt") as f:
 pygame.init()
 db = Data()
 name = "test"
+endtime = time.time() + 60
+
 
 def draw_score(screen, score, x, y):
     """Draw the score on the screen"""
@@ -25,7 +29,6 @@ def draw_game_over(screen, x, y):
     font = pygame.font.Font(None, 48)
     text = font.render("Game Over", True, RED)
     screen.blit(text, (x, y))
-
 
 
 def hazards(screen, x, y):
@@ -54,10 +57,7 @@ def hazards(screen, x, y):
     elif EARTHQUAKE:
         text = font.render("Earthquake", True, BROWN)
 
-
     screen.blit(text, (x, y))
-
-
 
 
 def main():
@@ -84,7 +84,7 @@ def main():
     elif DIFFICULTY == "Asian":
         fall_speed = 3
     else:
-      fall_speed = 20  # You can adjust this value to change the falling speed, it's in milliseconds
+        fall_speed = 20  # You can adjust this value to change the falling speed, it's in milliseconds
 
     while True:
         # is_snowing = snowing()
@@ -102,29 +102,29 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     if game.valid_move(game.current_piece, -1, 0, 0):
-                        game.current_piece.x -= 1 # Move the piece to the left
+                        game.current_piece.x -= 1  # Move the piece to the left
                     if WIND[1] or TYPHOON[1]:
                         if game.valid_move(game.current_piece, -1, 0, 0):
                             if random.randint(0, 1) == 0:
-                                game.current_piece.x -= 1 # Move the piece to the left
+                                game.current_piece.x -= 1  # Move the piece to the left
                 if event.key == pygame.K_RIGHT:
                     if game.valid_move(game.current_piece, 1, 0, 0):
-                        game.current_piece.x += 1 # Move the piece to the right
+                        game.current_piece.x += 1  # Move the piece to the right
                     if WIND[2] or TYPHOON[1]:
                         if game.valid_move(game.current_piece, 1, 0, 0):
                             if random.randint(0, 1) == 0:
-                                game.current_piece.x += 1 # Move the piece to the left
+                                game.current_piece.x += 1  # Move the piece to the left
                 if event.key == pygame.K_DOWN:
                     if game.valid_move(game.current_piece, 0, 1, 0):
-                        game.current_piece.y += 1 # Move the piece down
+                        game.current_piece.y += 1  # Move the piece down
                 if event.key == pygame.K_UP:
                     if game.valid_move(game.current_piece, 0, 0, 1):
                         # game.rotate_sound.play()
-                        game.current_piece.rotation += 1 # Rotate the piece
+                        game.current_piece.rotation += 1  # Rotate the piece
                 if event.key == pygame.K_SPACE:
                     while game.valid_move(game.current_piece, 0, 1, 0):
-                        game.current_piece.y += 1 # Move the piece down until it hits the bottom
-                    game.lock_piece(game.current_piece) # Lock the piece in place
+                        game.current_piece.y += 1  # Move the piece down until it hits the bottom
+                    game.lock_piece(game.current_piece)  # Lock the piece in place
         # Get the number of milliseconds since the last frame
         delta_time = clock.get_rawtime()
         # Add the delta time to the fall time
