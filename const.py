@@ -1,3 +1,4 @@
+import pygame
 WIDTH, HEIGHT = 500, 500
 GRID_SIZE = 25
 
@@ -22,6 +23,9 @@ diff = "Asian"
 # with open("new_score.txt") as f:
 #     highest_score = int(f.readline())
 #     f.close()
+
+# screen set-up
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Tetromino shapes
 

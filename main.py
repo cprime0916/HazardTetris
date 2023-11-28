@@ -2,13 +2,11 @@
 import sys
 import pygame
 import random
-
 # Self-made Package
-from const import *
 import const
-from tetromino import *
 from tetris import *
 from data import *  # database lib
+
 # Time Package
 import time
 
@@ -93,7 +91,7 @@ def hazards(screen, x, y):
 
 def main():
     # Initialize pygame
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))  # Show screen
+    screen = const.screen  # Show screen
     pygame.display.set_caption('Tetris')  # Screen Title
 
     # Create Game Clock
