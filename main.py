@@ -2,6 +2,7 @@
 import sys
 import pygame
 import random
+# global diff
 # Self-made Package
 import const
 from tetris import *
@@ -27,8 +28,7 @@ pygame.init()
 db = Data() # db = Database
 name = "test"
 
-# Time Count (unit=60s)
-endtime = time.time() + 60
+
 
 
 def draw_score(screen, score, x, y):
@@ -70,8 +70,6 @@ def hazards(screen, x, y):
             SNOWING[0] = True  # Snow Start
         elif randnum == 3:  # 1/7 Chance
             TYPHOON[0] = True  # Typhoon Start
-        elif randnum == 4:  # 1/7 Chance
-            EARTHQUAKE = True  # Earthquake Start
 
     # Show Current Hazard Event
     font = pygame.font.Font(None, 36)
@@ -82,14 +80,12 @@ def hazards(screen, x, y):
         text = font.render("Snowy", True, WHITE)
     elif TYPHOON[0]:
         text = font.render("Typhoon", True, BLUE)
-    elif EARTHQUAKE:
-        text = font.render("Earthquake", True, BROWN)
 
     # Show Text
     screen.blit(text, (x, y))
 
-
 def main():
+    game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
     # Initialize pygame
     screen = const.screen  # Show screen
     pygame.display.set_caption('Tetris')  # Screen Title
@@ -103,20 +99,22 @@ def main():
     # Change of falling speed according to the argument fall_speed
     fall_time = 0
     if diff == "Noob":
-        fall_speed = 50
+        fall_speed = 100
     elif diff == "Easy":
-        fall_speed = 40
+        fall_speed = 75
     elif diff == "Normal":
-        fall_speed = 30
+        fall_speed = 50
     elif diff == "Hard":
-        fall_speed = 20
+        fall_speed = 25
     elif diff == "GLITCH":
-        fall_speed = 10
+        fall_speed = 20
     elif diff == "Asian":
         fall_speed = 3
     else:
-        fall_speed = 20  # You can adjust this value to change the falling speed, it's in milliseconds
+        fall_speed = 80  # You can adjust this value to change the falling speed, it's in milliseconds
 
+    # Timer 
+    endtime = time.time() + 60000
     # Settings end
 
     # Game start
@@ -132,28 +130,27 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            # elif event.type == pygame.VIDEORESIZE:
-            #     pass  # Ignore the resize event
+
             # Check if keys are pressed
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                     if game.valid_move(game.current_piece, -1, 0, 0):
                         game.current_piece.x -= 1  # Move the piece to the left
                     if WIND[1] or TYPHOON[1]:
                         if game.valid_move(game.current_piece, -1, 0, 0):
                             if random.randint(0, 1) == 0:
                                 game.current_piece.x -= 1  # Move the piece to the left
-                if event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     if game.valid_move(game.current_piece, 1, 0, 0):
                         game.current_piece.x += 1  # Move the piece to the right
                     if WIND[2] or TYPHOON[1]:
                         if game.valid_move(game.current_piece, 1, 0, 0):
                             if random.randint(0, 1) == 0:
                                 game.current_piece.x += 1  # Move the piece to the left
-                if event.key == pygame.K_DOWN:
+                if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     if game.valid_move(game.current_piece, 0, 1, 0):
                         game.current_piece.y += 1  # Move the piece down
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_UP or event.key == pygame.K_w:
                     if game.valid_move(game.current_piece, 0, 0, 1):
                         # game.rotate_sound.play()
                         game.current_piece.rotation += 1  # Rotate the piece
@@ -173,7 +170,11 @@ def main():
         # Draw the score on the screen
         draw_score(screen, game.score, 10, 10)
         hazards(screen, 10, 30)
-
+        # Time Count (unit=60s)
+    
+        endtime -= delta_time
+        if endtime < time.time():
+            game.game_over = True
         # Draw the grid and the current piece
         game.draw(screen)
         if game.game_over:
@@ -191,10 +192,101 @@ def main():
         pygame.display.flip()
         # Set the framerate
         clock.tick(60)
+        
 
+
+
+
+
+def start_menu_main():
+    global diff
+    # Initialize Pygame
+    pygame.init()
+
+    # Set up the window
+    screen_width = WIDTH
+    screen_height = HEIGHT
+    window = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption("Start Menu")
+
+    # Set up the font
+    font = pygame.font.Font(None, 30)
+
+    # Define the button dimensions
+    button_width = 50
+    button_height = 20
+
+    # Create a function to draw the button
+    def draw_button(x, y, text):
+        button_rect = pygame.Rect(x, y, button_width, button_height)
+        pygame.draw.rect(window, RED, button_rect)
+        
+        text_surface = font.render(text, True, WHITE)
+        text_rect = text_surface.get_rect(center=button_rect.center, width=button_width, height=button_height)
+        window.blit(text_surface, text_rect)
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                button_x = (screen_width - button_width) // 2
+                button_y = (screen_height - button_height) // 2
+                noob_button_rect = pygame.Rect(button_x, button_y-100, button_width, button_height)
+                easy_button_rect = pygame.Rect(button_x, button_y-60, button_width, button_height)
+                normal_button_rect = pygame.Rect(button_x, button_y-20, button_width, button_height)
+                hard_button_rect = pygame.Rect(button_x, button_y+20, button_width, button_height)
+                glitch_button_rect = pygame.Rect(button_x, button_y+60, button_width, button_height)
+                asian_button_rect = pygame.Rect(button_x, button_y+100, button_width, button_height)
+                if noob_button_rect.collidepoint(event.pos):
+                    diff = "Noob"
+                    main()
+                if easy_button_rect.collidepoint(event.pos):
+                    diff = "Easy"
+                    main()
+                if normal_button_rect.collidepoint(event.pos):
+                    diff = "Normal"
+                    main()
+                if hard_button_rect.collidepoint(event.pos):
+                    diff = "Hard"
+                    main()
+                if glitch_button_rect.collidepoint(event.pos):
+                    diff = "Glitch"
+                    main()
+                if asian_button_rect.collidepoint(event.pos):
+                    diff = "Asian"
+                    main()
+                    
+        
+        window.fill(BLACK)
+        
+        # Draw the button
+        noob_button_x = (screen_width - button_width) // 2
+        noob_button_y = (screen_height - button_height - 100) // 2
+        draw_button(noob_button_x, noob_button_y, "Noob")
+        easy_button_x = (screen_width - button_width) // 2
+        easy_button_y = (screen_height - button_height - 60) // 2
+        draw_button(easy_button_x, easy_button_y, "Easy")
+        normal_button_x = (screen_width - button_width) // 2
+        normal_button_y = (screen_height - button_height - 20) // 2
+        draw_button(normal_button_x, normal_button_y, "Normal")
+        hard_button_x = (screen_width - button_width) // 2
+        hard_button_y = (screen_height - button_height + 20) // 2
+        draw_button(hard_button_x, hard_button_y, "Hard")
+        glitch_button_x = (screen_width - button_width) // 2
+        glitch_button_y = (screen_height - button_height + 60) // 2
+        draw_button(glitch_button_x, glitch_button_y, "Glitch")
+        asian_button_x = (screen_width - button_width) // 2
+        asian_button_y = (screen_height - button_height + 100) // 2
+        draw_button(asian_button_x, asian_button_y, "Asian")
+        
+        pygame.display.flip()
+
+    
 
 if __name__ == "__main__":
     try:
-        main()
+        start_menu_main()
     except KeyboardInterrupt:
         pass
