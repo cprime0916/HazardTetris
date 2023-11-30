@@ -103,7 +103,7 @@ def main(diff):
         fall_speed = 50  # You can adjust this value to change the falling speed, it's in milliseconds
 
     # Timer 
-    endtime = time.time() + 60000
+    endtime = time.time() + 60
 
     ### Settings end
 
@@ -175,10 +175,7 @@ def main(diff):
 
         # Time Count (unit=60s)
 
-        # Timer Decreases Time
         endtime -= delta_time
-
-        # If times up:
         if endtime < time.time():
             game.game_over = True # Game Over!
 
