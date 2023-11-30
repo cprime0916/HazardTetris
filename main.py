@@ -14,8 +14,6 @@ import time
 
 # set diff
 diff = const.diff
-# change diff
-diff = "Noob"
 # Score Read
 with open("new_score.txt") as f:
     highest_score = int(f.readline())
@@ -247,7 +245,12 @@ def start_menu_main():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-
+                # Noob.on_press(event, diff, "Noob")
+                # Easy.on_press(event, diff, "Easy")
+                # Normal.on_press(event, diff, "Normal")
+                # Hard.on_press(event, diff, "Hard")
+                # Glitch.on_press(event, diff, "GLITCH")
+                # Asian.on_press(event, diff, "Asian")
                 noob_button_rect = pygame.Rect(button_x, button_y - 100, BUTTON_WIDTH, BUTTON_HEIGHT)
                 easy_button_rect = pygame.Rect(button_x, button_y - 60, BUTTON_WIDTH, BUTTON_HEIGHT)
                 normal_button_rect = pygame.Rect(button_x, button_y - 20, BUTTON_WIDTH, BUTTON_HEIGHT)
