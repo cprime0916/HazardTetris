@@ -18,7 +18,7 @@ class Button:
     def construct(self, x, y):
         self.press_rect = pygame.Rect(x, y, BUTTON_WIDTH, BUTTON_HEIGHT)
 
-    def on_press(self, func, event, diff, s):
+    def on_press(self, event, func, diff, s):
         if self.press_rect.collidepoint(event.pos):
             diff = s
-            func()
+            func(diff)

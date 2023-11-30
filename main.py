@@ -1,3 +1,4 @@
+
 # Python STL
 import sys
 import pygame
@@ -82,7 +83,7 @@ def hazards(screen, x, y):
     screen.blit(text, (x, y))
 
 
-def main():
+def main(diff):
     game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
     # Initialize pygame
     screen = const.screen  # Show screen
@@ -104,7 +105,7 @@ def main():
         fall_speed = 50
     elif diff == "Hard":
         fall_speed = 25
-    elif diff == "Glitch":
+    elif diff == "Glitch":  # when I chose asian, it uses mode "Glitch" instead
         fall_speed = 20
     elif diff == "Asian":
         fall_speed = 3
@@ -194,6 +195,7 @@ def main():
 
 def start_menu_main():
     global diff
+
     # Initialize Pygame
     pygame.init()
 
@@ -257,12 +259,12 @@ def start_menu_main():
                 Hard.construct(button_x, button_y + 20)
                 Glitch.construct(button_x, button_y + 60)
                 Asian.construct(button_x, button_y + 100)
-                Noob.on_press(event, main(), diff, "Noob")
-                Easy.on_press(event, main(), diff, "Easy")
-                Normal.on_press(event, main(), diff, "Normal")
-                Hard.on_press(event, main(), diff, "Hard")
-                Glitch.on_press(event, main(), diff, "Glitch")
-                Asian.on_press(event, main(), diff, "Asian")
+                Noob.on_press(event, main, diff, "Noob")
+                Easy.on_press(event, main, diff, "Easy")
+                Normal.on_press(event, main, diff, "Normal")
+                Hard.on_press(event, main, diff, "Hard")
+                Glitch.on_press(event, main, diff, "Glitch")
+                Asian.on_press(event, main, diff, "Asian")
                 # noob_button_rect = pygame.Rect(button_x, button_y - 100, BUTTON_WIDTH, BUTTON_HEIGHT)
                 # easy_button_rect = pygame.Rect(button_x, button_y - 60, BUTTON_WIDTH, BUTTON_HEIGHT)
                 # normal_button_rect = pygame.Rect(button_x, button_y - 20, BUTTON_WIDTH, BUTTON_HEIGHT)
