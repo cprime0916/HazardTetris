@@ -7,6 +7,7 @@ import random
 import const
 from tetris import *
 from data import *  # database lib
+import ui
 
 # Time Package
 import time
@@ -25,24 +26,22 @@ pygame.init()
 # screen = pygame.display.set_mode((1000, 1000), pygame.FULLSCREEN)
 
 # SQL Database
-db = Data() # db = Database
+db = Data()  # db = Database
 name = "test"
-
-
 
 
 def draw_score(screen, score, x, y):
     """Draw the score on the screen"""
-    font = pygame.font.Font(None, 36) # FontSize Settings
-    text = font.render(f"Score: {score}", True, WHITE) # Text Content
-    screen.blit(text, (x, y)) # Show Text
+    font = pygame.font.Font(None, 36)  # FontSize Settings
+    text = font.render(f"Score: {score}", True, WHITE)  # Text Content
+    screen.blit(text, (x, y))  # Show Text
 
 
 def draw_game_over(screen, x, y):
     """Draw the game over text on the screen"""
-    font = pygame.font.Font(None, 48) # FontS ize Settings
-    text = font.render("Game Over", True, RED) # Text Content
-    screen.blit(text, (x, y)) # Show Text
+    font = pygame.font.Font(None, 48)  # FontS ize Settings
+    text = font.render("Game Over", True, RED)  # Text Content
+    screen.blit(text, (x, y))  # Show Text
 
 
 # Build Hazard Functions
@@ -62,10 +61,10 @@ def hazards(screen, x, y):
     global WIND, SNOWING, TYPHOON, EARTHQUAKE
 
     if not (WIND[0] or SNOWING[0] or TYPHOON[0] or EARTHQUAKE):
-        randnum = random.randint(1, 7) # Choose Hazard Event
+        randnum = random.randint(1, 7)  # Choose Hazard Event
         if randnum == 1:  # 1/7 Chance
             WIND[0] = True  # Wind Start
-            WIND[1] = random.choice(["Left", "Right"]) # Set direction of wind, 1/2 Chance for both direction
+            WIND[1] = random.choice(["Left", "Right"])  # Set direction of wind, 1/2 Chance for both direction
         elif randnum == 2:  # 1/7 Chance
             SNOWING[0] = True  # Snow Start
         elif randnum == 3:  # 1/7 Chance
@@ -83,6 +82,7 @@ def hazards(screen, x, y):
 
     # Show Text
     screen.blit(text, (x, y))
+
 
 def main():
     game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
@@ -171,7 +171,7 @@ def main():
         draw_score(screen, game.score, 10, 10)
         hazards(screen, 10, 30)
         # Time Count (unit=60s)
-    
+
         endtime -= delta_time
         if endtime < time.time():
             game.game_over = True
@@ -192,10 +192,6 @@ def main():
         pygame.display.flip()
         # Set the framerate
         clock.tick(60)
-        
-
-
-
 
 
 def start_menu_main():
@@ -217,28 +213,52 @@ def start_menu_main():
     button_height = 20
 
     # Create a function to draw the button
-    def draw_button(x, y, text):
-        button_rect = pygame.Rect(x, y, button_width, button_height)
-        pygame.draw.rect(window, RED, button_rect)
-        
-        text_surface = font.render(text, True, WHITE)
-        text_rect = text_surface.get_rect(center=button_rect.center, width=button_width, height=button_height)
-        window.blit(text_surface, text_rect)
-
+    # def draw_button(x, y, text):
+    #     button_rect = pygame.Rect(x, y, button_width, button_height)
+    #     pygame.draw.rect(window, RED, button_rect)
+    #
+    #     text_surface = font.render(text, True, WHITE)
+    #     text_rect = text_surface.get_rect(center=button_rect.center, width=button_width, height=button_height)
+    #     window.blit(text_surface, text_rect)
+    # Basic button coordinates
+    button_x = (screen_width - button_width) // 2
+    button_y = (screen_height - button_height) // 2
+    # Construction of Noob object
+    noob_button_x = (screen_width - button_width) // 2
+    noob_button_y = (screen_height - button_height - 100) // 2
+    Noob = ui.Button(noob_button_x, noob_button_y, "Noob")
+    # Construction of Easy object
+    easy_button_x = (screen_width - button_width) // 2
+    easy_button_y = (screen_height - button_height - 60) // 2
+    Easy = ui.Button(easy_button_x, easy_button_y, "Easy")
+    # Construction of Normal object
+    normal_button_x = (screen_width - button_width) // 2
+    normal_button_y = (screen_height - button_height - 20) // 2
+    Normal = ui.Button(normal_button_x, normal_button_y, "Normal")
+    # Construction of Hard object
+    hard_button_x = (screen_width - button_width) // 2
+    hard_button_y = (screen_height - button_height + 20) // 2
+    Hard = ui.Button(hard_button_x, hard_button_y, "Hard")
+    # Construction of Glitch object
+    glitch_button_x = (screen_width - button_width) // 2
+    glitch_button_y = (screen_height - button_height + 60) // 2
+    Glitch = ui.Button(glitch_button_x, glitch_button_y, "Glitch")
+    asian_button_x = (screen_width - button_width) // 2
+    asian_button_y = (screen_height - button_height + 100) // 2
+    Asian = ui.Button(asian_button_x, asian_button_y, "Asian")
     running = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                button_x = (screen_width - button_width) // 2
-                button_y = (screen_height - button_height) // 2
-                noob_button_rect = pygame.Rect(button_x, button_y-100, button_width, button_height)
-                easy_button_rect = pygame.Rect(button_x, button_y-60, button_width, button_height)
-                normal_button_rect = pygame.Rect(button_x, button_y-20, button_width, button_height)
-                hard_button_rect = pygame.Rect(button_x, button_y+20, button_width, button_height)
-                glitch_button_rect = pygame.Rect(button_x, button_y+60, button_width, button_height)
-                asian_button_rect = pygame.Rect(button_x, button_y+100, button_width, button_height)
+
+                noob_button_rect = pygame.Rect(button_x, button_y - 100, button_width, button_height)
+                easy_button_rect = pygame.Rect(button_x, button_y - 60, button_width, button_height)
+                normal_button_rect = pygame.Rect(button_x, button_y - 20, button_width, button_height)
+                hard_button_rect = pygame.Rect(button_x, button_y + 20, button_width, button_height)
+                glitch_button_rect = pygame.Rect(button_x, button_y + 60, button_width, button_height)
+                asian_button_rect = pygame.Rect(button_x, button_y + 100, button_width, button_height)
                 if noob_button_rect.collidepoint(event.pos):
                     diff = "Noob"
                     main()
@@ -257,33 +277,19 @@ def start_menu_main():
                 if asian_button_rect.collidepoint(event.pos):
                     diff = "Asian"
                     main()
-                    
-        
+
         window.fill(BLACK)
-        
+
         # Draw the button
-        noob_button_x = (screen_width - button_width) // 2
-        noob_button_y = (screen_height - button_height - 100) // 2
-        draw_button(noob_button_x, noob_button_y, "Noob")
-        easy_button_x = (screen_width - button_width) // 2
-        easy_button_y = (screen_height - button_height - 60) // 2
-        draw_button(easy_button_x, easy_button_y, "Easy")
-        normal_button_x = (screen_width - button_width) // 2
-        normal_button_y = (screen_height - button_height - 20) // 2
-        draw_button(normal_button_x, normal_button_y, "Normal")
-        hard_button_x = (screen_width - button_width) // 2
-        hard_button_y = (screen_height - button_height + 20) // 2
-        draw_button(hard_button_x, hard_button_y, "Hard")
-        glitch_button_x = (screen_width - button_width) // 2
-        glitch_button_y = (screen_height - button_height + 60) // 2
-        draw_button(glitch_button_x, glitch_button_y, "Glitch")
-        asian_button_x = (screen_width - button_width) // 2
-        asian_button_y = (screen_height - button_height + 100) // 2
-        draw_button(asian_button_x, asian_button_y, "Asian")
-        
+        Noob.draw()
+        Easy.draw()
+        Normal.draw()
+        Hard.draw()
+        Glitch.draw()
+        Asian.draw()
+
         pygame.display.flip()
 
-    
 
 if __name__ == "__main__":
     try:
