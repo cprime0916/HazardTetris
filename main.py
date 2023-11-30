@@ -186,7 +186,9 @@ def main(diff):
                     f.write(str(game.score))
             # You can add a "Press any key to restart" message here
             if event.type == pygame.KEYDOWN:
-                game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
+                # Only Button R resets the game
+                if event.key == pygame.K_r:
+                    game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
             # Check for the KEYDOWN event
         # Update the display
         pygame.display.flip()
