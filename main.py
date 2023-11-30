@@ -103,7 +103,7 @@ def main(diff):
         fall_speed = 50  # You can adjust this value to change the falling speed, it's in milliseconds
 
     # Timer 
-    endtime = time.time() + 60000
+    endtime = time.time() + 60
 
     ### Settings end
 
@@ -165,7 +165,6 @@ def main(diff):
         hazards(screen, 10, 30)
         # Time Count (unit=60s)
 
-        endtime -= delta_time
         if endtime < time.time():
             game.game_over = True
         # Draw the grid and the current piece
