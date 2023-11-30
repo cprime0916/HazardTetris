@@ -1,7 +1,9 @@
 import pygame
+# width and height
 WIDTH, HEIGHT = 500, 500
 GRID_SIZE = 25
-
+BUTTON_WIDTH = 50
+BUTTON_HEIGHT = 20
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)

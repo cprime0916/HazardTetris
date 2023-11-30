@@ -200,51 +200,46 @@ def start_menu_main():
     pygame.init()
 
     # Set up the window
-    screen_width = WIDTH
     screen_height = HEIGHT
-    window = pygame.display.set_mode((screen_width, screen_height))
+    window = pygame.display.set_mode((WIDTH, screen_height))
     pygame.display.set_caption("Start Menu")
 
     # Set up the font
     font = pygame.font.Font(None, 30)
 
-    # Define the button dimensions
-    button_width = 50
-    button_height = 20
-
     # Create a function to draw the button
     # def draw_button(x, y, text):
-    #     button_rect = pygame.Rect(x, y, button_width, button_height)
+    #     button_rect = pygame.Rect(x, y, BUTTON_WIDTH, BUTTON_HEIGHT)
     #     pygame.draw.rect(window, RED, button_rect)
     #
     #     text_surface = font.render(text, True, WHITE)
-    #     text_rect = text_surface.get_rect(center=button_rect.center, width=button_width, height=button_height)
+    #     text_rect = text_surface.get_rect(center=button_rect.center, width=BUTTON_WIDTH, height=BUTTON_HEIGHT)
     #     window.blit(text_surface, text_rect)
     # Basic button coordinates
-    button_x = (screen_width - button_width) // 2
-    button_y = (screen_height - button_height) // 2
+    button_x = (WIDTH - BUTTON_WIDTH) // 2
+    button_y = (screen_height - BUTTON_HEIGHT) // 2
     # Construction of Noob object
-    noob_button_x = (screen_width - button_width) // 2
-    noob_button_y = (screen_height - button_height - 100) // 2
+    noob_button_x = (WIDTH - BUTTON_WIDTH) // 2
+    noob_button_y = (screen_height - BUTTON_HEIGHT - 100) // 2
     Noob = ui.Button(noob_button_x, noob_button_y, "Noob")
     # Construction of Easy object
-    easy_button_x = (screen_width - button_width) // 2
-    easy_button_y = (screen_height - button_height - 60) // 2
+    easy_button_x = (WIDTH - BUTTON_WIDTH) // 2
+    easy_button_y = (screen_height - BUTTON_HEIGHT - 60) // 2
     Easy = ui.Button(easy_button_x, easy_button_y, "Easy")
     # Construction of Normal object
-    normal_button_x = (screen_width - button_width) // 2
-    normal_button_y = (screen_height - button_height - 20) // 2
+    normal_button_x = (WIDTH - BUTTON_WIDTH) // 2
+    normal_button_y = (screen_height - BUTTON_HEIGHT - 20) // 2
     Normal = ui.Button(normal_button_x, normal_button_y, "Normal")
     # Construction of Hard object
-    hard_button_x = (screen_width - button_width) // 2
-    hard_button_y = (screen_height - button_height + 20) // 2
+    hard_button_x = (WIDTH - BUTTON_WIDTH) // 2
+    hard_button_y = (screen_height - BUTTON_HEIGHT + 20) // 2
     Hard = ui.Button(hard_button_x, hard_button_y, "Hard")
     # Construction of Glitch object
-    glitch_button_x = (screen_width - button_width) // 2
-    glitch_button_y = (screen_height - button_height + 60) // 2
+    glitch_button_x = (WIDTH - BUTTON_WIDTH) // 2
+    glitch_button_y = (screen_height - BUTTON_HEIGHT + 60) // 2
     Glitch = ui.Button(glitch_button_x, glitch_button_y, "Glitch")
-    asian_button_x = (screen_width - button_width) // 2
-    asian_button_y = (screen_height - button_height + 100) // 2
+    asian_button_x = (WIDTH - BUTTON_WIDTH) // 2
+    asian_button_y = (screen_height - BUTTON_HEIGHT + 100) // 2
     Asian = ui.Button(asian_button_x, asian_button_y, "Asian")
     running = True
     while running:
@@ -253,12 +248,12 @@ def start_menu_main():
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
 
-                noob_button_rect = pygame.Rect(button_x, button_y - 100, button_width, button_height)
-                easy_button_rect = pygame.Rect(button_x, button_y - 60, button_width, button_height)
-                normal_button_rect = pygame.Rect(button_x, button_y - 20, button_width, button_height)
-                hard_button_rect = pygame.Rect(button_x, button_y + 20, button_width, button_height)
-                glitch_button_rect = pygame.Rect(button_x, button_y + 60, button_width, button_height)
-                asian_button_rect = pygame.Rect(button_x, button_y + 100, button_width, button_height)
+                noob_button_rect = pygame.Rect(button_x, button_y - 100, BUTTON_WIDTH, BUTTON_HEIGHT)
+                easy_button_rect = pygame.Rect(button_x, button_y - 60, BUTTON_WIDTH, BUTTON_HEIGHT)
+                normal_button_rect = pygame.Rect(button_x, button_y - 20, BUTTON_WIDTH, BUTTON_HEIGHT)
+                hard_button_rect = pygame.Rect(button_x, button_y + 20, BUTTON_WIDTH, BUTTON_HEIGHT)
+                glitch_button_rect = pygame.Rect(button_x, button_y + 60, BUTTON_WIDTH, BUTTON_HEIGHT)
+                asian_button_rect = pygame.Rect(button_x, button_y + 100, BUTTON_WIDTH, BUTTON_HEIGHT)
                 if noob_button_rect.collidepoint(event.pos):
                     diff = "Noob"
                     main()

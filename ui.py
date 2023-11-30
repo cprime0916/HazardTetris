@@ -1,10 +1,9 @@
 import pygame
-from const import BLUE, WHITE, screen
-button_width = 50
-button_height = 20
+from const import BLUE, WHITE, screen, BUTTON_WIDTH, BUTTON_HEIGHT
+
 class Button:
     def __init__(self, x, y, text):
-        self.rect = pygame.Rect(x, y, button_width, button_height)
+        self.rect = pygame.Rect(x, y, BUTTON_WIDTH, BUTTON_HEIGHT)
         self.text = text
     def draw(self):
         pygame.draw.rect(screen, BLUE, self.rect)
