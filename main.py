@@ -125,39 +125,39 @@ def main(diff):
 
         # For every action we get from the game
         for event in pygame.event.get():
+            if not game.game_over:
+                # Check for the QUIT event
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
 
-            # Check for the QUIT event
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-            # Check if keys are pressed
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                    if game.valid_move(game.current_piece, -1, 0, 0):
-                        game.current_piece.x -= 1  # Move the piece to the left
-                    if WIND[1] or TYPHOON[1]:
+                # Check if keys are pressed
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                         if game.valid_move(game.current_piece, -1, 0, 0):
-                            if random.randint(0, 1) == 0:
-                                game.current_piece.x -= 1  # Move the piece to the left
-                if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                    if game.valid_move(game.current_piece, 1, 0, 0):
-                        game.current_piece.x += 1  # Move the piece to the right
-                    if WIND[2] or TYPHOON[1]:
+                            game.current_piece.x -= 1  # Move the piece to the left
+                        if WIND[1] or TYPHOON[1]:
+                            if game.valid_move(game.current_piece, -1, 0, 0):
+                                if random.randint(0, 1) == 0:
+                                    game.current_piece.x -= 1  # Move the piece to the left
+                    if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                         if game.valid_move(game.current_piece, 1, 0, 0):
-                            if random.randint(0, 1) == 0:
-                                game.current_piece.x += 1  # Move the piece to the left
-                if event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                    if game.valid_move(game.current_piece, 0, 1, 0):
-                        game.current_piece.y += 1  # Move the piece down
-                if event.key == pygame.K_UP or event.key == pygame.K_w:
-                    if game.valid_move(game.current_piece, 0, 0, 1):
-                        # game.rotate_sound.play()
-                        game.current_piece.rotation += 1  # Rotate the piece
-                if event.key == pygame.K_SPACE:
-                    while game.valid_move(game.current_piece, 0, 1, 0):
-                        game.current_piece.y += 1  # Move the piece down until it hits the bottom
-                    game.lock_piece(game.current_piece)  # Lock the piece in place
+                            game.current_piece.x += 1  # Move the piece to the right
+                        if WIND[2] or TYPHOON[1]:
+                            if game.valid_move(game.current_piece, 1, 0, 0):
+                                if random.randint(0, 1) == 0:
+                                    game.current_piece.x += 1  # Move the piece to the left
+                    if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                        if game.valid_move(game.current_piece, 0, 1, 0):
+                            game.current_piece.y += 1  # Move the piece down
+                    if event.key == pygame.K_UP or event.key == pygame.K_w:
+                        if game.valid_move(game.current_piece, 0, 0, 1):
+                            # game.rotate_sound.play()
+                            game.current_piece.rotation += 1  # Rotate the piece
+                    if event.key == pygame.K_SPACE:
+                        while game.valid_move(game.current_piece, 0, 1, 0):
+                            game.current_piece.y += 1  # Move the piece down until it hits the bottom
+                        game.lock_piece(game.current_piece)  # Lock the piece in place
         # Get the number of milliseconds since the last frame
         delta_time = clock.get_rawtime()
         # Add the delta time to the fall time
@@ -178,19 +178,21 @@ def main(diff):
         # Draw the grid and the current piece
         game.draw(screen)
         if game.game_over:
+
             # Draw the "Game Over" message
             draw_game_over(screen, WIDTH // 2 - 100, HEIGHT // 2 - 30)  # Draw the "Game Over" message
-            if game.score > highest_score:
-                Data.push(name=name, score=game.score)
-                with open("new_score.txt", "w") as f:
-                    f.write(str(game.score))
+
+            # if game.score > highest_score:
+            #     Data.push(name=name, score=game.score)
+            #     with open("new_score.txt", "w") as f:
+            #         f.write(str(game.score))
+
             # You can add a "Press any key to restart" message here
             if event.type == pygame.KEYDOWN:
                 # Only Button R resets the game
                 if event.key == pygame.K_r:
-                    start_menu_main()
-                    # game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
-            # Check for the KEYDOWN event
+                    game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
+
         # Update the display
         pygame.display.flip()
         # Set the framerate
