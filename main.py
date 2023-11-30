@@ -188,7 +188,8 @@ def main(diff):
             if event.type == pygame.KEYDOWN:
                 # Only Button R resets the game
                 if event.key == pygame.K_r:
-                    game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
+                    start_menu_main()
+                    # game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
             # Check for the KEYDOWN event
         # Update the display
         pygame.display.flip()
