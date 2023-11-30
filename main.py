@@ -111,11 +111,12 @@ def main(diff):
     elif diff == "Asian":
         fall_speed = 12
     else:
-        fall_speed = 80  # You can adjust this value to change the falling speed, it's in milliseconds
+        fall_speed = 50  # You can adjust this value to change the falling speed, it's in milliseconds
 
     # Timer 
     endtime = time.time() + 60000
-    # Settings end
+
+    ### Settings end
 
     # Game start
     while True:
@@ -191,7 +192,8 @@ def main(diff):
             if event.type == pygame.KEYDOWN:
                 # Only Button R resets the game
                 if event.key == pygame.K_r:
-                    game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
+                    # game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
+                    start_menu_main()
 
         # Update the display
         pygame.display.flip()
