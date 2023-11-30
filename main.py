@@ -151,44 +151,58 @@ def main(diff):
                         while game.valid_move(game.current_piece, 0, 1, 0):
                             game.current_piece.y += 1  # Move the piece down until it hits the bottom
                         game.lock_piece(game.current_piece)  # Lock the piece in place
+
         # Get the number of milliseconds since the last frame
         delta_time = clock.get_rawtime()
+
         # Add the delta time to the fall time
         fall_time += delta_time
+        
+        # If it is time for gravity to run 
         if fall_time >= fall_speed:
+
             # Move the piece down
             game.update()
+
             # Reset the fall time
             fall_time = 0
+
         # Draw the score on the screen
         draw_score(screen, game.score, 10, 10)
+
+        # Update Hazard States
         hazards(screen, 10, 30)
+
         # Time Count (unit=60s)
 
+        # Timer Decreases Time
         endtime -= delta_time
+
+        # If times up:
         if endtime < time.time():
-            game.game_over = True
+            game.game_over = True # Game Over!
+
         # Draw the grid and the current piece
         game.draw(screen)
+
+        # If the game ends...
         if game.game_over:
 
             # Draw the "Game Over" message
             draw_game_over(screen, WIDTH // 2 - 100, HEIGHT // 2 - 30)  # Draw the "Game Over" message
 
-            # if game.score > highest_score:
-            #     Data.push(name=name, score=game.score)
-            #     with open("new_score.txt", "w") as f:
-            #         f.write(str(game.score))
-
             # You can add a "Press any key to restart" message here
             if event.type == pygame.KEYDOWN:
+
                 # Only Button R resets the game
                 if event.key == pygame.K_r:
                     start_menu_main()
                     # game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
 
+
         # Update the display
         pygame.display.flip()
+
         # Set the framerate
         clock.tick(60)
 
@@ -242,8 +256,12 @@ def start_menu_main():
     Asian = ui.Button(asian_button_x, asian_button_y, "Asian")
 
     # Settings End
+
+    # Screen start running
     running = True
     while running:
+
+        # For everything the game detected
         for event in pygame.event.get():
 
             # Check for the QUIT event
@@ -251,6 +269,7 @@ def start_menu_main():
                     pygame.quit()
                     sys.exit()
 
+            # If something is clicked
             elif event.type == pygame.MOUSEBUTTONDOWN:
 
                 # Construct Buttons
