@@ -1,9 +1,11 @@
 import pygame
-# width and height
-WIDTH, HEIGHT =250, 500
+
+# Width and Height
+WIDTH, HEIGHT = 250, 500
 GRID_SIZE = 25
 BUTTON_WIDTH = 80
 BUTTON_HEIGHT = 30
+
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -13,18 +15,25 @@ GREEN = (0, 255, 0)
 BROWN = (107, 0, 7)
 COLORS = [RED, BLUE, GREEN]
 GRAVITY = 10
-# self.diff = "Easy"
+
+# Initial Hazard Settings
 WIND = [False, "Left", 0]
 WATER = False
 TYPHOON = [False, 0]
 SNOWING = [False, 0]
 EARTHQUAKE = False
 VOLCANIC = [False, 0]
+
+# Coordibates of Start Menu Buttons
+NOOB_Y = -150
+EASY_Y = -90
+NORMAL_Y = -30
+HARD_Y = 30
+GLITCH_Y = 90
+ASIAN_Y = 150
+
+# Initial Difficulty
 diff = "Normal"
-# Read new score
-# with open("new_score.txt") as f:
-#     highest_score = int(f.readline())
-#     f.close()
 
 # screen set-up
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
