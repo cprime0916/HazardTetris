@@ -49,7 +49,7 @@ def hazards(screen, x, y):
     global WIND, SNOWING, TYPHOON, EARTHQUAKE
 
     if not (WIND[0] or SNOWING[0] or TYPHOON[0] or EARTHQUAKE): # If there is no hazard currently
-        randnum = random.randint(1, 300)  # Choose Hazard Event
+        randnum = random.randint(1, 30)  # Choose Hazard Event
         if randnum == 1:  # 1/7 Chance
             WIND[0] = True  # Wind Start
             WIND[1] = random.choice(["Left", "Right"])  # Set direction of wind, 1/2 Chance for both direction
@@ -115,11 +115,15 @@ def main(diff):
 
         # For every action we get from the game
         for event in pygame.event.get():
+
             # Check for the QUIT event
             if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+
+            # Actions that need to be checked if the game is running
             if not game.game_over:
+
                 # Check if keys are pressed
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT or event.key == pygame.K_a:
@@ -241,8 +245,12 @@ def start_menu_main():
     running = True
     while running:
         for event in pygame.event.get():
+
+            # Check for the QUIT event
             if event.type == pygame.QUIT:
-                running = False
+                    pygame.quit()
+                    sys.exit()
+
             elif event.type == pygame.MOUSEBUTTONDOWN:
 
                 # Construct Buttons
