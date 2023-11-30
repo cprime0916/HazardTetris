@@ -42,7 +42,7 @@ class Tetris:
                 shape = SHAPES[1]
             else:
                 shape = random.choice(SHAPES[2:])
-        elif diff == "GLItch":
+        elif diff == "Glitch":
             if randnum <= 5:
                 shape = SHAPES[0]
             elif randnum <= 10:

@@ -104,7 +104,7 @@ def main():
         fall_speed = 50
     elif diff == "Hard":
         fall_speed = 25
-    elif diff == "GLITCH":
+    elif diff == "Glitch":
         fall_speed = 20
     elif diff == "Asian":
         fall_speed = 3
@@ -249,7 +249,7 @@ def start_menu_main():
                 # Easy.on_press(event, diff, "Easy")
                 # Normal.on_press(event, diff, "Normal")
                 # Hard.on_press(event, diff, "Hard")
-                # Glitch.on_press(event, diff, "GLITCH")
+                # Glitch.on_press(event, diff, "Glitch")
                 # Asian.on_press(event, diff, "Asian")
                 noob_button_rect = pygame.Rect(button_x, button_y - 100, BUTTON_WIDTH, BUTTON_HEIGHT)
                 easy_button_rect = pygame.Rect(button_x, button_y - 60, BUTTON_WIDTH, BUTTON_HEIGHT)
