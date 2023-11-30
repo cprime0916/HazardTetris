@@ -20,7 +20,7 @@ TYPHOON = [False, 0]
 SNOWING = [False, 0]
 EARTHQUAKE = False
 VOLCANIC = [False, 0]
-diff = "Asian"
+diff = "Normal"
 # Read new score
 # with open("new_score.txt") as f:
 #     highest_score = int(f.readline())

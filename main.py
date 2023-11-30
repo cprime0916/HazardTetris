@@ -84,6 +84,7 @@ def hazards(screen, x, y):
 
 
 def main(diff):
+    print(f"{diff}")
     game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
     # Initialize pygame
     screen = const.screen  # Show screen
@@ -305,6 +306,7 @@ def start_menu_main():
 
 if __name__ == "__main__":
     try:
+        print(f"{diff}")
         start_menu_main()
     except KeyboardInterrupt:
         pass
