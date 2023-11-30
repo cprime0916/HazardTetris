@@ -1,41 +1,41 @@
-
 # Python STL
 import sys
 import pygame
 import random
-# global diff
+
+
 # Self-made Package
 import const
 from tetris import *
 from data import *  # database lib
 import ui
 
+
 # Time Package
 import time
 
-# set diff
+
+# set Difficulty
 diff = const.diff
-# Score Read
-with open("new_score.txt") as f:
-    highest_score = int(f.readline())
-    f.close()
+
 
 # Screen Start
 pygame.init()
-# screen = pygame.display.set_mode((1000, 1000), pygame.FULLSCREEN)
+
 
 # SQL Database
 db = Data()  # db = Database
 name = "test"
 
 
+# Text for score
 def draw_score(screen, score, x, y):
     """Draw the score on the screen"""
     font = pygame.font.Font(None, 36)  # FontSize Settings
     text = font.render(f"Score: {score}", True, WHITE)  # Text Content
     screen.blit(text, (x, y))  # Show Text
 
-
+# Text for Game Over
 def draw_game_over(screen, x, y):
     """Draw the game over text on the screen"""
     font = pygame.font.Font(None, 48)  # FontS ize Settings
@@ -44,23 +44,12 @@ def draw_game_over(screen, x, y):
 
 
 # Build Hazard Functions
-'''
-
-Functions:
-
-Wind: 
-Snowing
-Typhoon
-Earthquake
-
-'''
-
 
 def hazards(screen, x, y):
     global WIND, SNOWING, TYPHOON, EARTHQUAKE
 
-    if not (WIND[0] or SNOWING[0] or TYPHOON[0] or EARTHQUAKE):
-        randnum = random.randint(1, 7)  # Choose Hazard Event
+    if not (WIND[0] or SNOWING[0] or TYPHOON[0] or EARTHQUAKE): # If there is no hazard currently
+        randnum = random.randint(1, 300)  # Choose Hazard Event
         if randnum == 1:  # 1/7 Chance
             WIND[0] = True  # Wind Start
             WIND[1] = random.choice(["Left", "Right"])  # Set direction of wind, 1/2 Chance for both direction
@@ -126,12 +115,11 @@ def main(diff):
 
         # For every action we get from the game
         for event in pygame.event.get():
-            if not game.game_over:
-                # Check for the QUIT event
-                if event.type == pygame.QUIT:
+            # Check for the QUIT event
+            if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-
+            if not game.game_over:
                 # Check if keys are pressed
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT or event.key == pygame.K_a:
