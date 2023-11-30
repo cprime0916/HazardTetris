@@ -13,6 +13,7 @@ import ui
 
 # Time Package
 import time
+import datetime
 
 
 # set Difficulty
@@ -103,7 +104,8 @@ def main(diff):
         fall_speed = 50  # You can adjust this value to change the falling speed, it's in milliseconds
 
     # Timer 
-    endtime = time.time() + 60
+    endtime = time.time() + 30000
+    start_time = datetime.datetime.now()
 
     ### Settings end
 
@@ -175,8 +177,9 @@ def main(diff):
 
         # Time Count (unit=60s)
 
-        endtime -= delta_time
-        if endtime < time.time():
+        current_time = datetime.datetime.now()
+        passed_time = current_time-start_time
+        if passed_time.total_seconds() > 60:
             game.game_over = True # Game Over!
 
         # Draw the grid and the current piece
