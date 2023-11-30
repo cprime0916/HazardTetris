@@ -6,6 +6,7 @@ class Button:
     def __init__(self, x, y, text):
         self.rect = pygame.Rect(x, y, BUTTON_WIDTH, BUTTON_HEIGHT)
         self.text = text
+        self.press_rect = pygame.Rect(0, 0, 0, 0)
 
     def draw(self):
         pygame.draw.rect(screen, BLUE, self.rect)
@@ -14,7 +15,10 @@ class Button:
         text_rect = text.get_rect(center=self.rect.center)
         screen.blit(text, text_rect)
 
-    def on_press(self, event, diff, s):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.rect.collidepoint(event.pos):
-                diff = s
+    def construct(self, x, y):
+        self.press_rect = pygame.Rect(x, y, BUTTON_WIDTH, BUTTON_HEIGHT)
+
+    def on_press(self, func, event, diff, s):
+        if self.press_rect.collidepoint(event.pos):
+            diff = s
+            func()

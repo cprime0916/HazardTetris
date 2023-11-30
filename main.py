@@ -251,30 +251,42 @@ def start_menu_main():
                 # Hard.on_press(event, diff, "Hard")
                 # Glitch.on_press(event, diff, "Glitch")
                 # Asian.on_press(event, diff, "Asian")
-                noob_button_rect = pygame.Rect(button_x, button_y - 100, BUTTON_WIDTH, BUTTON_HEIGHT)
-                easy_button_rect = pygame.Rect(button_x, button_y - 60, BUTTON_WIDTH, BUTTON_HEIGHT)
-                normal_button_rect = pygame.Rect(button_x, button_y - 20, BUTTON_WIDTH, BUTTON_HEIGHT)
-                hard_button_rect = pygame.Rect(button_x, button_y + 20, BUTTON_WIDTH, BUTTON_HEIGHT)
-                glitch_button_rect = pygame.Rect(button_x, button_y + 60, BUTTON_WIDTH, BUTTON_HEIGHT)
-                asian_button_rect = pygame.Rect(button_x, button_y + 100, BUTTON_WIDTH, BUTTON_HEIGHT)
-                if noob_button_rect.collidepoint(event.pos):
-                    diff = "Noob"
-                    main()
-                if easy_button_rect.collidepoint(event.pos):
-                    diff = "Easy"
-                    main()
-                if normal_button_rect.collidepoint(event.pos):
-                    diff = "Normal"
-                    main()
-                if hard_button_rect.collidepoint(event.pos):
-                    diff = "Hard"
-                    main()
-                if glitch_button_rect.collidepoint(event.pos):
-                    diff = "Glitch"
-                    main()
-                if asian_button_rect.collidepoint(event.pos):
-                    diff = "Asian"
-                    main()
+                Noob.construct(button_x, button_y - 100)
+                Easy.construct(button_x, button_y - 60)
+                Normal.construct(button_x, button_y - 20)
+                Hard.construct(button_x, button_y + 20)
+                Glitch.construct(button_x, button_y + 60)
+                Asian.construct(button_x, button_y + 100)
+                Noob.on_press(event, main(), diff, "Noob")
+                Easy.on_press(event, main(), diff, "Easy")
+                Normal.on_press(event, main(), diff, "Normal")
+                Hard.on_press(event, main(), diff, "Hard")
+                Glitch.on_press(event, main(), diff, "Glitch")
+                Asian.on_press(event, main(), diff, "Asian")
+                # noob_button_rect = pygame.Rect(button_x, button_y - 100, BUTTON_WIDTH, BUTTON_HEIGHT)
+                # easy_button_rect = pygame.Rect(button_x, button_y - 60, BUTTON_WIDTH, BUTTON_HEIGHT)
+                # normal_button_rect = pygame.Rect(button_x, button_y - 20, BUTTON_WIDTH, BUTTON_HEIGHT)
+                # hard_button_rect = pygame.Rect(button_x, button_y + 20, BUTTON_WIDTH, BUTTON_HEIGHT)
+                # glitch_button_rect = pygame.Rect(button_x, button_y + 60, BUTTON_WIDTH, BUTTON_HEIGHT)
+                # asian_button_rect = pygame.Rect(button_x, button_y + 100, BUTTON_WIDTH, BUTTON_HEIGHT)
+                # if noob_button_rect.collidepoint(event.pos):
+                #     diff = "Noob"
+                #     main()
+                # if easy_button_rect.collidepoint(event.pos):
+                #     diff = "Easy"
+                #     main()
+                # if normal_button_rect.collidepoint(event.pos):
+                #     diff = "Normal"
+                #     main()
+                # if hard_button_rect.collidepoint(event.pos):
+                #     diff = "Hard"
+                #     main()
+                # if glitch_button_rect.collidepoint(event.pos):
+                #     diff = "Glitch"
+                #     main()
+                # if asian_button_rect.collidepoint(event.pos):
+                #     diff = "Asian"
+                #     main()
 
         window.fill(BLACK)
 
