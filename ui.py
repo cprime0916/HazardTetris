@@ -15,3 +15,4 @@ class Button:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1 and self.rect.collidepoint(event.pos):
                 diff = s
+

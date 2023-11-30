@@ -1,4 +1,4 @@
 reset_game
-self.diff menu
+self.diff menu (done)
 score system (diff * row)
-timer (1min)
+timer (1min) (not sure if done or not)
