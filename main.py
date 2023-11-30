@@ -214,30 +214,32 @@ def start_menu_main():
 
     # Construction of Noob object
     noob_button_x = (WIDTH - BUTTON_WIDTH) // 2
-    noob_button_y = (screen_height - BUTTON_HEIGHT - 100) // 2
+    noob_button_y = (screen_height - BUTTON_HEIGHT - 200) // 2
     Noob = ui.Button(noob_button_x, noob_button_y, "Noob")
 
     # Construction of Easy object
     easy_button_x = (WIDTH - BUTTON_WIDTH) // 2
-    easy_button_y = (screen_height - BUTTON_HEIGHT - 60) // 2
+    easy_button_y = (screen_height - BUTTON_HEIGHT - 120) // 2
     Easy = ui.Button(easy_button_x, easy_button_y, "Easy")
 
     # Construction of Normal object
     normal_button_x = (WIDTH - BUTTON_WIDTH) // 2
-    normal_button_y = (screen_height - BUTTON_HEIGHT - 20) // 2
+    normal_button_y = (screen_height - BUTTON_HEIGHT - 40) // 2
     Normal = ui.Button(normal_button_x, normal_button_y, "Normal")
 
     # Construction of Hard object
     hard_button_x = (WIDTH - BUTTON_WIDTH) // 2
-    hard_button_y = (screen_height - BUTTON_HEIGHT + 20) // 2
+    hard_button_y = (screen_height - BUTTON_HEIGHT + 40) // 2
     Hard = ui.Button(hard_button_x, hard_button_y, "Hard")
 
     # Construction of Glitch object
     glitch_button_x = (WIDTH - BUTTON_WIDTH) // 2
-    glitch_button_y = (screen_height - BUTTON_HEIGHT + 60) // 2
+    glitch_button_y = (screen_height - BUTTON_HEIGHT + 120) // 2
     Glitch = ui.Button(glitch_button_x, glitch_button_y, "Glitch")
+
+    # Construction of Asian object
     asian_button_x = (WIDTH - BUTTON_WIDTH) // 2
-    asian_button_y = (screen_height - BUTTON_HEIGHT + 100) // 2
+    asian_button_y = (screen_height - BUTTON_HEIGHT + 200) // 2
     Asian = ui.Button(asian_button_x, asian_button_y, "Asian")
 
     # Settings End
@@ -254,7 +256,7 @@ def start_menu_main():
                 Normal.construct(button_x, button_y - 20)
                 Hard.construct(button_x, button_y + 20)
                 Glitch.construct(button_x, button_y + 60)
-                Asian.construct(button_x, button_y + 100)
+                Asian.construct(button_x, button_y + 120)
 
                 # Check Click
                 Noob.on_press(event, main, diff, "Noob")
@@ -264,6 +266,7 @@ def start_menu_main():
                 Glitch.on_press(event, main, diff, "Glitch")
                 Asian.on_press(event, main, diff, "Asian")
 
+        # Window Color
         window.fill(BLACK)
 
         # Draw the button
