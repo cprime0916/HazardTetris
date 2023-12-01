@@ -1,7 +1,7 @@
 import pygame
 
 # Width and Height
-WIDTH, HEIGHT = 800, 500  # 250, 500
+WIDTH, HEIGHT = 250, 500
 GRID_SIZE = 25
 BUTTON_WIDTH = 100
 BUTTON_HEIGHT = 30
@@ -79,7 +79,7 @@ SHAPES = [
          '.....'],
         ['.....',
          '.O...',
-         'OO...',
+         '.OO..',
          '.O...',
          '.....'],
         ['.....',
@@ -88,9 +88,9 @@ SHAPES = [
          '.O...',
          '.....'],
         ['.....',
-         'O....',
+         '.O...',
          'OO...',
-         'O....',
+         '.O...',
          '.....']
     ],
     [
