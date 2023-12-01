@@ -36,7 +36,7 @@ ASIAN_Y = 150
 diff = "Normal"
 
 # screen set-up
-screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Tetromino shapes
 

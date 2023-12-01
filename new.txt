@@ -1,4 +1,4 @@
 1. need executable (NO NEED VSCODE) (successful just use --onefile)
 2. Beginner -> Beginner (formal)
 3. Timer (show la)
-4. 
+4. higher than a certain mark, 4 ppl battle, exchange for token, 

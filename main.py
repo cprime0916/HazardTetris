@@ -114,7 +114,7 @@ def main(diff):
 
         # Fill background color to black
         screen.fill(BLACK)
-
+    
         # For every action we get from the game
         for event in pygame.event.get():
 
@@ -179,9 +179,20 @@ def main(diff):
 
         current_time = datetime.datetime.now()
         passed_time = current_time-start_time
-        if passed_time.total_seconds() > 60:
+        passed_time_in_sec = round(passed_time.total_seconds(), 2)
+        # Time Check
+        if passed_time_in_sec > 60:
             game.game_over = True # Game Over!
 
+        # Display Timer
+        if not game.game_over:
+            timer_font = pygame.font.Font(None, 36)
+            timer_text = f"Time: {passed_time_in_sec:.2f}"
+            timer_surface = timer_font.render(timer_text, True, WHITE)
+            timer_rect = timer_surface.get_rect()
+            timer_rect.center = (WIDTH // 2 - 53, HEIGHT // 2 - 180)
+            pygame.draw.rect(screen, BLACK, timer_rect)
+            screen.blit(timer_surface, timer_rect)
         # Draw the grid and the current piece
         game.draw(screen)
 
@@ -215,7 +226,7 @@ def start_menu_main():
 
     # Set up the window
     screen_height = HEIGHT
-    window = pygame.display.set_mode((WIDTH, screen_height), pygame.FULLSCREEN)
+    window = pygame.display.set_mode((WIDTH, screen_height))
     pygame.display.set_caption("Start Menu")
 
     # Set up the font
