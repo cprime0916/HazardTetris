@@ -24,6 +24,10 @@ SNOWING = [False, 0]
 EARTHQUAKE = False
 VOLCANIC = [False, 0]
 
+# Types of difficulty
+DIFF_TYPE = ["Beginner", "Easy", "Normal", "Hard", "Glitch", "Asian"]
+DIFF_SCORE = [0.5, 1.0, 1.25, 1.5, 1.75, 2.0]
+LVL_SCORE = [0, 40, 100, 300, 1200]
 # Coordibates of Start Menu Buttons
 NOOB_Y = -150
 EASY_Y = -90

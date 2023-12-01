@@ -33,7 +33,7 @@ name = "test"
 def draw_score(screen, score, x, y):
     """Draw the score on the screen"""
     font = pygame.font.Font(None, 36)  # FontSize Settings
-    text = font.render(f"Score: {score}", True, WHITE)  # Text Content
+    text = font.render(f"Score: {score:.1f}", True, WHITE)  # Text Content
     screen.blit(text, (x, y))  # Show Text
 
 # Text for Game Over
@@ -75,7 +75,7 @@ def hazards(screen, x, y):
 
 def main(diff):
     print(f"{diff}")
-    game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
+    game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE, diff)  # Game initialize
     # Initialize pygame
     screen = const.screen  # Show screen
     pygame.display.set_caption('Tetris')  # Screen Title
@@ -83,7 +83,6 @@ def main(diff):
     # Create Game Clock
     clock = pygame.time.Clock()
 
-    game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)  # Game initialize
     keys = pygame.key.get_pressed()  # Detect which key is pressed during every frame
 
     # Change of falling speed according to the argument fall_speed
@@ -184,15 +183,17 @@ def main(diff):
         if passed_time_in_sec > 60:
             game.game_over = True # Game Over!
 
-        # Display Timer
+        # Update timer's time
         if not game.game_over:
             timer_font = pygame.font.Font(None, 36)
             timer_text = f"Time: {passed_time_in_sec:.2f}"
-            timer_surface = timer_font.render(timer_text, True, WHITE)
-            timer_rect = timer_surface.get_rect()
-            timer_rect.center = (WIDTH // 2 - 53, HEIGHT // 2 - 180)
-            pygame.draw.rect(screen, BLACK, timer_rect)
-            screen.blit(timer_surface, timer_rect)
+
+        # Display Timer
+        timer_surface = timer_font.render(timer_text, True, WHITE)
+        timer_rect = timer_surface.get_rect()
+        timer_rect.center = (WIDTH // 2 - 53, HEIGHT // 2 - 180)
+        pygame.draw.rect(screen, BLACK, timer_rect)
+        screen.blit(timer_surface, timer_rect)
         # Draw the grid and the current piece
         game.draw(screen)
 

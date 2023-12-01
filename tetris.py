@@ -3,7 +3,7 @@ import pygame
 from tetromino import *
 from const import *
 class Tetris:
-    def __init__(self, width, height):
+    def __init__(self, width, height, diff):
         self.width = width
         self.height = height
         self.grid = [[0 for _ in range(width)] for _ in range(height)]
@@ -13,6 +13,7 @@ class Tetris:
         self.snow_list = []
         self.volcanic_list = []
         self.to_be_color = []
+        self.diff = diff
         # self.rotate_sound = pygame.mixer.Sound("Sounds/rotate.ogg")
         # self.clear_sound = pygame.mixer.Sound("Sounds/clear.ogg")
 
@@ -129,7 +130,9 @@ class Tetris:
                     pass
         # Clear the lines and update the score
         lines_cleared = self.clear_lines()
-        self.score += lines_cleared * 100  # Update the score based on the number of cleared lines
+        score_for_diff = DIFF_SCORE[DIFF_TYPE.index(self.diff)]
+        self.score += LVL_SCORE[lines_cleared] * score_for_diff  # Update the score based on the number of cleared lines
+
         # Create a new piece
         self.current_piece = self.new_piece()
         # Check if the game is over
