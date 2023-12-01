@@ -1,10 +1,12 @@
 import pygame
 
 # Width and Height
-WIDTH, HEIGHT = 250, 500
+WIDTH, HEIGHT = 800, 500  # 250, 500
 GRID_SIZE = 25
 BUTTON_WIDTH = 100
 BUTTON_HEIGHT = 30
+SCREEN_WIDTH = 1920
+SCREEN_HEIGHT = 1080
 
 # Colors
 WHITE = (255, 255, 255)
@@ -40,7 +42,7 @@ ASIAN_Y = 150
 diff = "Normal"
 
 # screen set-up
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.FULLSCREEN)
 
 # Tetromino shapes
 

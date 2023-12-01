@@ -1,3 +1,6 @@
 1. higher than a certain mark x, 4 ppl battle,
 win and higher than x can exchange for token,
 which can be exchanged for gifts
+
+left pos = (screen size / 2) - (game size / 2)
+right pos = (screen size / 2) + (game size / 2)

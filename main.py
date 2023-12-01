@@ -246,12 +246,13 @@ def main(diff):
 def start_menu_main():
     global diff
 
+
     # Initialize Pygame
     pygame.init()
 
     # Set up the window
     screen_height = HEIGHT
-    window = pygame.display.set_mode((WIDTH, screen_height))
+    window = pygame.display.set_mode((WIDTH, screen_height), pygame.FULLSCREEN)
     pygame.display.set_caption("Start Menu")
 
     # Set up the font
