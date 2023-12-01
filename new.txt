@@ -4,3 +4,5 @@ which can be exchanged for gifts
 
 left pos = (screen size / 2) - (game size / 2)
 right pos = (screen size / 2) + (game size / 2)
+
+so far x is determined to be 1000.
