@@ -50,13 +50,13 @@ def hazards(screen, x, y):
     global WIND, SNOWING, TYPHOON, EARTHQUAKE
 
     if not (WIND[0] or SNOWING[0] or TYPHOON[0] or EARTHQUAKE): # If there is no hazard currently
-        randnum = random.randint(1, 30)  # Choose Hazard Event
+        randnum = random.randint(1, 50)  # Choose Hazard Event
         if randnum == 1:  # 1/7 Chance
             WIND[0] = True  # Wind Start
             WIND[1] = random.choice(["Left", "Right"])  # Set direction of wind, 1/2 Chance for both direction
-        elif randnum >1 and randnum < 28:  # 1/7 Chance
+        elif randnum > 1 and randnum < 10:  # 1/7 Chance
             SNOWING[0] = True  # Snow Start
-        elif randnum == 3:  # 1/7 Chance
+        elif randnum == 50:  # 1/7 Chance
             TYPHOON[0] = True  # Typhoon Start
 
     # Show Current Hazard Event
@@ -215,7 +215,7 @@ def start_menu_main():
 
     # Set up the window
     screen_height = HEIGHT
-    window = pygame.display.set_mode((WIDTH, screen_height))
+    window = pygame.display.set_mode((WIDTH, screen_height), pygame.FULLSCREEN)
     pygame.display.set_caption("Start Menu")
 
     # Set up the font
