@@ -28,12 +28,22 @@ pygame.init()
 db = Data()  # db = Database
 name = "test"
 
+# Text for text
+def draw_text(screen, text, x, y):
+    font = pygame.font.Font(None, 36)  # FontSize Settings
+    text = font.render(text, True, WHITE)  # Text Content
+    screen.blit(text, (x, y))
+    pygame.display.flip()
 
+# Erase Content in the Middle
+def erase(screen, x, y):
+    pygame.draw.rect(screen, (0, 0, 0), (x, y, 30, 30))
+    pygame.display.flip()
 # Text for score
 def draw_score(screen, score, x, y):
     """Draw the score on the screen"""
     font = pygame.font.Font(None, 36)  # FontSize Settings
-    text = font.render(f"Score: {score:.1f}", True, WHITE)  # Text Content
+    text = font.render(f"Score: {score}", True, WHITE)  # Text Content
     screen.blit(text, (x, y))  # Show Text
 
 # Text for Game Over
@@ -94,19 +104,33 @@ def main(diff):
     elif diff == "Normal":
         fall_speed = 50
     elif diff == "Hard":
-        fall_speed = 50
+        fall_speed = 40
     elif diff == "Glitch":  # when I chose asian, it uses mode "Glitch" instead
-        fall_speed = 35
+        fall_speed = 25
     elif diff == "Asian":
         fall_speed = 12
     else:
         fall_speed = 50  # You can adjust this value to change the falling speed, it's in milliseconds
 
-    # Timer 
-    endtime = time.time() + 30000
-    start_time = datetime.datetime.now()
-
     ### Settings end
+
+    screen.fill(BLACK)
+    # 3 secs COUNTDOWN
+    draw_text(screen, "3.", WIDTH // 2, HEIGHT // 2)
+    time.sleep(1)
+    erase(screen, WIDTH // 2, HEIGHT // 2)
+    draw_text(screen, "2..", WIDTH // 2, HEIGHT // 2)
+    time.sleep(1)
+    erase(screen, WIDTH // 2, HEIGHT // 2)
+    draw_text(screen, "1...", WIDTH // 2, HEIGHT // 2)
+    time.sleep(1)
+    erase(screen, WIDTH // 2, HEIGHT // 2)
+    draw_text(screen, "GO!", WIDTH // 2, HEIGHT // 2)
+    time.sleep(0.5)
+    erase(screen, WIDTH // 2, HEIGHT // 2)
+
+    # Timer
+    start_time = datetime.datetime.now()
 
     # Game start
     while True:

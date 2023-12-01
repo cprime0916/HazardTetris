@@ -131,7 +131,7 @@ class Tetris:
         # Clear the lines and update the score
         lines_cleared = self.clear_lines()
         score_for_diff = DIFF_SCORE[DIFF_TYPE.index(self.diff)]
-        self.score += LVL_SCORE[lines_cleared] * score_for_diff  # Update the score based on the number of cleared lines
+        self.score += int(LVL_SCORE[lines_cleared] * score_for_diff) # Update the score based on the number of cleared lines
 
         # Create a new piece
         self.current_piece = self.new_piece()
