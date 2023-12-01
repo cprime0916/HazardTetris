@@ -107,7 +107,7 @@ def main(diff):
         fall_speed = 40
     elif diff == "Glitch":  # when I chose asian, it uses mode "Glitch" instead
         fall_speed = 25
-    elif diff == "Asian":
+    elif diff == "StMarks":
         fall_speed = 12
     else:
         fall_speed = 50  # You can adjust this value to change the falling speed, it's in milliseconds
@@ -287,10 +287,10 @@ def start_menu_main():
     glitch_button_y = (screen_height - BUTTON_HEIGHT + 2*GLITCH_Y) // 2
     Glitch = ui.Button(glitch_button_x, glitch_button_y, "Glitch")
 
-    # Construction of Asian object
+    # Construction of StMarks object
     asian_button_x = (WIDTH - BUTTON_WIDTH) // 2
     asian_button_y = (screen_height - BUTTON_HEIGHT + 2*ASIAN_Y) // 2
-    Asian = ui.Button(asian_button_x, asian_button_y, "Asian")
+    StMarks = ui.Button(asian_button_x, asian_button_y, "StMarks")
 
     # Settings End
 
@@ -315,7 +315,7 @@ def start_menu_main():
                 Normal.construct(button_x, button_y + NORMAL_Y)
                 Hard.construct(button_x, button_y + HARD_Y)
                 Glitch.construct(button_x, button_y + GLITCH_Y)
-                Asian.construct(button_x, button_y + ASIAN_Y)
+                StMarks.construct(button_x, button_y + ASIAN_Y)
 
                 # Check Click
                 Beginner.on_press(event, main, diff, "Beginner")
@@ -323,7 +323,7 @@ def start_menu_main():
                 Normal.on_press(event, main, diff, "Normal")
                 Hard.on_press(event, main, diff, "Hard")
                 Glitch.on_press(event, main, diff, "Glitch")
-                Asian.on_press(event, main, diff, "Asian")
+                StMarks.on_press(event, main, diff, "StMarks")
 
         # Window Color
         window.fill(BLACK)
@@ -334,7 +334,7 @@ def start_menu_main():
         Normal.draw()
         Hard.draw()
         Glitch.draw()
-        Asian.draw()
+        StMarks.draw()
 
         pygame.display.flip()
 

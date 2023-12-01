@@ -54,7 +54,7 @@ class Tetris:
                 shape = random.choice([SHAPES[4], SHAPES[5]])
             else:
                 shape = random.choice([[SHAPES[2], SHAPES[3]]])
-        elif diff == "Asian":
+        elif diff == "StMarks":
             if randnum <= 1:
                 shape = SHAPES[0]
             elif randnum <= 6:
