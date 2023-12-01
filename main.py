@@ -54,7 +54,7 @@ def hazards(screen, x, y):
         if randnum == 1:  # 1/7 Chance
             WIND[0] = True  # Wind Start
             WIND[1] = random.choice(["Left", "Right"])  # Set direction of wind, 1/2 Chance for both direction
-        elif randnum == 2:  # 1/7 Chance
+        elif randnum >1 and randnum < 28:  # 1/7 Chance
             SNOWING[0] = True  # Snow Start
         elif randnum == 3:  # 1/7 Chance
             TYPHOON[0] = True  # Typhoon Start
