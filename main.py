@@ -88,7 +88,7 @@ def main(diff):
 
     # Change of falling speed according to the argument fall_speed
     fall_time = 0
-    if diff == "Noob":
+    if diff == "Beginner":
         fall_speed = 120
     elif diff == "Easy":
         fall_speed = 80
@@ -225,10 +225,10 @@ def start_menu_main():
     button_x = (WIDTH - BUTTON_WIDTH) // 2
     button_y = (screen_height - BUTTON_HEIGHT) // 2
 
-    # Construction of Noob object
+    # Construction of Beginner object
     noob_button_x = (WIDTH - BUTTON_WIDTH) // 2
     noob_button_y = (screen_height - BUTTON_HEIGHT + 2*NOOB_Y) // 2
-    Noob = ui.Button(noob_button_x, noob_button_y, "Noob")
+    Beginner = ui.Button(noob_button_x, noob_button_y, "Beginner")
 
     # Construction of Easy object
     easy_button_x = (WIDTH - BUTTON_WIDTH) // 2
@@ -273,7 +273,7 @@ def start_menu_main():
             elif event.type == pygame.MOUSEBUTTONDOWN:
 
                 # Construct Buttons
-                Noob.construct(button_x, button_y + NOOB_Y)
+                Beginner.construct(button_x, button_y + NOOB_Y)
                 Easy.construct(button_x, button_y + EASY_Y)
                 Normal.construct(button_x, button_y + NORMAL_Y)
                 Hard.construct(button_x, button_y + HARD_Y)
@@ -281,7 +281,7 @@ def start_menu_main():
                 Asian.construct(button_x, button_y + ASIAN_Y)
 
                 # Check Click
-                Noob.on_press(event, main, diff, "Noob")
+                Beginner.on_press(event, main, diff, "Beginner")
                 Easy.on_press(event, main, diff, "Easy")
                 Normal.on_press(event, main, diff, "Normal")
                 Hard.on_press(event, main, diff, "Hard")
@@ -292,7 +292,7 @@ def start_menu_main():
         window.fill(BLACK)
 
         # Draw the button
-        Noob.draw()
+        Beginner.draw()
         Easy.draw()
         Normal.draw()
         Hard.draw()
