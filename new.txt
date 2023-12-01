@@ -1,4 +1,3 @@
-1. need executable (NO NEED VSCODE) (successful just use --onefile)
-2. Beginner -> Beginner (formal)
-3. Timer (show la)
-4. higher than a certain mark, 4 ppl battle, exchange for token, 
+1. higher than a certain mark x, 4 ppl battle,
+win and higher than x can exchange for token,
+which can be exchanged for gifts
