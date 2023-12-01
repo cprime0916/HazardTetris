@@ -23,7 +23,7 @@ class Tetris:
     def new_piece(self):
         # Choose a random shape
         randnum = random.randint(1, 100)
-        if diff == "Noob":
+        if diff == "Beginner":
             if randnum <= 50:
                 shape = SHAPES[0]
             else:
