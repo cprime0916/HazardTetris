@@ -179,7 +179,7 @@ class Tetris:
 
             '''Snow Function'''
             if SNOWING[0]:
-                if SNOWING[1] >= 5:
+                if SNOWING[1] >= 3:
                     SNOWING[1] = 0
                     SNOWING[0] = False
                 else:

@@ -59,15 +59,18 @@ def draw_game_over(screen, x, y):
 def hazards(screen, x, y):
     global WIND, SNOWING, TYPHOON, EARTHQUAKE
 
-    if not (WIND[0] or SNOWING[0] or TYPHOON[0] or EARTHQUAKE): # If there is no hazard currently
+    if not (WIND[0] or TYPHOON[0] or EARTHQUAKE): # If there is no hazard currently
         randnum = random.randint(1, 50)  # Choose Hazard Event
         if randnum == 1:  # 1/7 Chance
             WIND[0] = True  # Wind Start
             WIND[1] = random.choice(["Left", "Right"])  # Set direction of wind, 1/2 Chance for both direction
-        elif randnum > 1 and randnum < 10:  # 1/7 Chance
-            SNOWING[0] = True  # Snow Start
+
         elif randnum == 50:  # 1/7 Chance
             TYPHOON[0] = True  # Typhoon Start
+    if not SNOWING[0]:
+        randnum = random.randint(1, 300)
+        if randnum == 1:
+            SNOWING[0] = True
 
     # Show Current Hazard Event
     font = pygame.font.Font(None, 36)
@@ -137,7 +140,8 @@ def main(diff):
 
         # Fill background color to black
         screen.fill(BLACK)
-    
+        pygame.draw.rect(screen, (125, 125, 125), (0, 0, 1000, 1000))
+        pygame.draw.rect(screen, (0, 0, 0), (0, 0, 250, 500))
         # For every action we get from the game
         for event in pygame.event.get():
 
