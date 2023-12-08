@@ -22,3 +22,4 @@ class Button:
         if self.press_rect.collidepoint(event.pos):
             diff = s
             func(diff)
+

@@ -135,6 +135,10 @@ def main(diff):
     # Timer
     start_time = datetime.datetime.now()
 
+    # SMS png
+    # image = pygame.image.load("stmarks.png")
+    IMAGE_X = 450
+    IMAGE_Y = 200
     # Game start
     while True:
 
@@ -142,6 +146,9 @@ def main(diff):
         screen.fill(BLACK)
         pygame.draw.rect(screen, (125, 125, 125), (0, 0, 1000, 1000))
         pygame.draw.rect(screen, (0, 0, 0), (0, 0, 250, 500))
+        # screen.blit(image, (IMAGE_X, IMAGE_Y))
+        # pygame.display.flip()
+
         # For every action we get from the game
         for event in pygame.event.get():
 

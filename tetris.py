@@ -104,7 +104,7 @@ class Tetris:
     def clear_lines(self):
         """Clear the lines that are full and return the number of cleared lines"""
         lines_cleared = 0
-        for i, row in enumerate(self.grid[:-1]):
+        for i, row in enumerate(self.grid):
             if all(cell != 0 for cell in row):
                 lines_cleared += 1
                 del self.grid[i]
