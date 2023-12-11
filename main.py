@@ -135,10 +135,6 @@ def main(diff):
     # Timer
     start_time = datetime.datetime.now()
 
-    # SMS png
-    # image = pygame.image.load("stmarks.png")
-    IMAGE_X = 450
-    IMAGE_Y = 200
     # Game start
     while True:
 
