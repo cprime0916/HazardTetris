@@ -235,7 +235,7 @@ class Tetris:
                 if cell:
                     pygame.draw.rect(screen, cell, (x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE - 1, GRID_SIZE - 1))
 
-        """Color eqrthquake"""
+        """Color earthquake"""
         for pos, color in self.to_be_color:
             pygame.draw.rect(screen, color, pos)
         self.to_be_color = []
