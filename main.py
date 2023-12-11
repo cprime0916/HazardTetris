@@ -263,7 +263,7 @@ def start_menu_main():
 
     # Set up the window
     screen_height = HEIGHT
-    window = pygame.display.set_mode((WIDTH, screen_height), pygame.FULLSCREEN)
+    window = pygame.display.set_mode((WIDTH, screen_height))
     pygame.display.set_caption("Start Menu")
 
     # Set up the font
