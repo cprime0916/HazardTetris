@@ -81,6 +81,8 @@ def hazards(screen, x, y):
         text = font.render("Snowy", True, WHITE)
     elif TYPHOON[0]:
         text = font.render("Typhoon", True, BLUE)
+    elif EARTHQUAKE:
+        text = font.render("Earthquake", True, BROWN)
 
     # Show Text
     screen.blit(text, (x, y))
