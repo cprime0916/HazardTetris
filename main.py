@@ -111,7 +111,7 @@ def main(diff):
     elif diff == "Glitch":  # when I chose asian, it uses mode "Glitch" instead
         fall_speed = 25
     elif diff == "StMarks":
-        fall_speed = 12
+        fall_speed = 15
     else:
         fall_speed = 50  # You can adjust this value to change the falling speed, it's in milliseconds
 
