@@ -6,3 +6,8 @@ left pos = (screen size / 2) - (game size / 2)
 right pos = (screen size / 2) + (game size / 2)
 
 so far x is determined to be 1000.
+
+2. a hold function
+storing a block in a hold space to use it for future use
+Implementation (maybe?):
+open an array for hold queries, and to process them.
