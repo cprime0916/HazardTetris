@@ -6,3 +6,11 @@ left pos = (screen size / 2) - (game size / 2)
 right pos = (screen size / 2) + (game size / 2)
 
 so far x is determined to be 1000.
+
+
+// new idea proposed
+Hold function: hold a block for future use
+implementation:
+- make an array of Tetromino to store for HOLD queries
+- press a key button for a get_out() function
+-> deleting the tetromino in the HOLD query array, and using it in the game instead.
