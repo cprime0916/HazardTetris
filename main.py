@@ -86,7 +86,7 @@ def hazards(screen, x, y):
     screen.blit(text, (x, y))
 
 
-def main(diff):
+def func(diff):
     print(f"{diff}")
     game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE, diff)  # Game initialize
     # Initialize pygame
@@ -239,7 +239,7 @@ def main(diff):
 
                 # Only Button R resets the game
                 if event.key == pygame.K_r:
-                    start_menu_main()
+                    main()
                     # game = Tetris(WIDTH // GRID_SIZE, HEIGHT // GRID_SIZE)
 
 
@@ -250,7 +250,7 @@ def main(diff):
         clock.tick(60)
 
 
-def start_menu_main():
+def main():
     global diff
 
 
@@ -325,12 +325,12 @@ def start_menu_main():
                 StMarks.construct(button_x, button_y + ASIAN_Y)
 
                 # Check Click
-                Beginner.on_press(event, main, diff, "Beginner")
-                Easy.on_press(event, main, diff, "Easy")
-                Normal.on_press(event, main, diff, "Normal")
-                Hard.on_press(event, main, diff, "Hard")
-                Glitch.on_press(event, main, diff, "Glitch")
-                StMarks.on_press(event, main, diff, "StMarks")
+                Beginner.on_press(event, func, diff, "Beginner")
+                Easy.on_press(event, func, diff, "Easy")
+                Normal.on_press(event, func, diff, "Normal")
+                Hard.on_press(event, func, diff, "Hard")
+                Glitch.on_press(event, func, diff, "Glitch")
+                StMarks.on_press(event, func, diff, "StMarks")
 
         # Window Color
         window.fill(BLACK)
@@ -347,4 +347,4 @@ def start_menu_main():
 
 
 if __name__ == "__main__":
-    start_menu_main()
+    main()
